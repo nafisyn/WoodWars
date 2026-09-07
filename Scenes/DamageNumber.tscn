@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkhllre3tabsn"]
+
+[ext_resource type="FontFile" uid="uid://bgocuvrfqxvbi" path="res://External Assets/CherryBombOne-Regular.ttf" id="1_w08oa"]
+[ext_resource type="Script" uid="uid://b1ny3hewn0e2a" path="res://Scripts/damage_number.gd" id="2_ym0hm"]
+
+[node name="DamageNumber" type="Label"]
+scale = Vector2(0.01, 0.01)
+theme_override_colors/font_color = Color(0.9999911, 0.41916427, 0.4090031, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("1_w08oa")
+theme_override_font_sizes/font_size = 32
+text = "-00"
+script = ExtResource("2_ym0hm")
