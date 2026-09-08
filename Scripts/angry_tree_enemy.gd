@@ -1,21 +1,24 @@
 extends CharacterBody2D
+# Angry Tree Enemy
 
 
 #region Variables, Constants, and Signals
 ## @onready variables
-@onready var sprite = $AnimatedSprite2D
-@onready var navigation_agent = $NavigationAgent2D
-@onready var attack_range = $AttackRange
+@onready var sprite := $AnimatedSprite2D
+@onready var navigation_agent := $NavigationAgent2D
+@onready var attack_range := $AttackRange
+@onready var sight_range := $SightRange
 @onready var wander_timer := $Timers/WanderTimer
 @onready var stop_timer = $Timers/StopTimer
-@onready var attack_timer = $Timers/AttackTimer
-@onready var hitstop_timer = $Timers/HitstopTimer
-@onready var death_animation_timer = $Timers/DeathAnimationTimer
-@onready var spawn_animation_timer = $Timers/SpawnAnimationTimer
-@onready var leaf_particles = $Particles/LeafParticles
-@onready var wood_particles = $Particles/WoodParticles
-@onready var health_bar = $HealthBar
-@onready var health_label = $HealthBar/HealthBarLabel
+@onready var hive_alert_timer := $Timers/HiveAlertTimer
+@onready var attack_timer := $Timers/AttackTimer
+@onready var hitstop_timer := $Timers/HitstopTimer
+@onready var death_animation_timer := $Timers/DeathAnimationTimer
+@onready var spawn_animation_timer := $Timers/SpawnAnimationTimer
+@onready var leaf_particles := $Particles/LeafParticles
+@onready var wood_particles := $Particles/WoodParticles
+@onready var health_bar := $HealthBar
+@onready var health_label := $HealthBar/HealthBarLabel
 @onready var world := $"../.."
 
 
@@ -41,7 +44,7 @@ var damage_number_scene := preload("res://Scenes/DamageNumber.tscn")
 #endregion
 
 
-### Main
+#region Main
 func _ready() -> void:
 	
 	# Sets random timer offset for variation
@@ -73,6 +76,12 @@ func _physics_process(_delta):
 		
 		move_and_slide()
 		
+		if chasing and animal == null and navigation_agent.is_navigation_finished():
+			chasing = false
+			wandering = true
+			direction = Vector2.ZERO
+		
+		
 		## Animation
 		update_animation(direction)
 		
@@ -84,7 +93,7 @@ func _physics_process(_delta):
 		## Health bar animation
 		if losing_health:
 			
-			health_bar.value -= 5
+			health_bar.value -= 2.5
 			
 			if health_bar.value <= health:
 				
@@ -128,23 +137,26 @@ func update_animation(direction: Vector2):
 	else:
 		
 		sprite.play("idle_animation")
+#endregion
 
 
 #region Chasing and Wandering
 ## Every 0.5 seconds changes chase direction
 func _on_chase_timer_timeout():
 	
+	if not chasing:
+		return
 	
-	if chasing and animal != null:
+	if animal != null:
 		
 		## Finds animal
 		navigation_agent.target_position = animal.global_position
-		
-		## Finds next positon
-		var next_position = navigation_agent.get_next_path_position()
-		
-		## Sets direction to found position
-		direction = global_position.direction_to(next_position)
+	
+	## Finds next positon
+	var next_position = navigation_agent.get_next_path_position()
+	
+	## Sets direction to found position
+	direction = global_position.direction_to(next_position)
 
 
 ## Animal enters sight range
@@ -154,6 +166,10 @@ func _on_sight_range_body_entered(body):
 		
 		animal = body
 		chasing = true
+		wandering = false
+		
+		send_hive_alert(animal.global_position)
+		hive_alert_timer.start()
 
 
 ## animal exits sight range
@@ -164,6 +180,8 @@ func _on_sight_range_body_exited(body):
 		animal = null
 		chasing = false
 		direction = Vector2.ZERO
+		
+		hive_alert_timer.stop()
 
 
 ## Wander direction change
@@ -192,6 +210,48 @@ func _on_stop_timer_timeout() -> void:
 	wandering = false
 	direction = Vector2.ZERO
 #endregion
+
+
+#region Hivemind
+func send_hive_alert(player_position: Vector2):
+	
+	# ORANGE = sent hive signal
+	sprite.modulate = Color.ORANGE
+	
+	var tween = create_tween()
+	tween.tween_property(sprite, "modulate", Color.WHITE, 0.3)
+	
+	for body in sight_range.get_overlapping_areas():
+		
+		if body.get_parent().is_in_group("tree") and body != attack_range:
+			
+			body.get_parent().receive_hive_alert(player_position)
+
+
+func receive_hive_alert(player_last_seen: Vector2):
+	
+	if dead or animal != null:
+		return
+	
+	# BLUE = received hive signal
+	sprite.modulate = Color.BLUE
+	
+	var tween = create_tween()
+	tween.tween_property(sprite, "modulate", Color.WHITE, 0.3)
+	
+	chasing = true
+	wandering = false
+	navigation_agent.target_position = player_last_seen
+
+
+func _on_hive_alert_timer_timeout() -> void:
+	
+	if animal != null:
+		
+		send_hive_alert(animal.global_position)
+		hive_alert_timer.start()
+#endregion
+
 
 
 #region Fighting

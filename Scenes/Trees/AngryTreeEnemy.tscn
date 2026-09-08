@@ -468,6 +468,7 @@ atlas = ExtResource("3_ly8tm")
 region = Rect2(0, 32, 32, 32)
 
 [node name="AngryTree" type="CharacterBody2D" groups=["tree"]]
+y_sort_enabled = true
 script = ExtResource("1_6k5ny")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -481,6 +482,7 @@ autoplay = "spawn_animation"
 visible = false
 position = Vector2(0, 1)
 collision_layer = 2
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SightRange"]
 position = Vector2(1, 4)
@@ -507,6 +509,10 @@ autostart = true
 
 [node name="StopTimer" type="Timer" parent="Timers"]
 wait_time = 1.5
+
+[node name="HiveAlertTimer" type="Timer" parent="Timers"]
+wait_time = 3.0
+one_shot = true
 
 [node name="AttackTimer" type="Timer" parent="Timers"]
 wait_time = 0.5
@@ -588,6 +594,7 @@ text = "30"
 [connection signal="timeout" from="Timers/ChaseTimer" to="." method="_on_chase_timer_timeout"]
 [connection signal="timeout" from="Timers/WanderTimer" to="." method="_on_wander_timer_timeout"]
 [connection signal="timeout" from="Timers/StopTimer" to="." method="_on_stop_timer_timeout"]
+[connection signal="timeout" from="Timers/HiveAlertTimer" to="." method="_on_hive_alert_timer_timeout"]
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/HitstopTimer" to="." method="_on_hitstop_timer_timeout"]
 [connection signal="timeout" from="Timers/DeathAnimationTimer" to="." method="_on_death_animation_timer_timeout"]

@@ -311,5 +311,25 @@ theme_override_fonts/font = ExtResource("4_er0s7")
 theme_override_font_sizes/font_size = 32
 text = "Trees: 2"
 
+[node name="SpawnTree" type="Button" parent="GUI/Control"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 81.0
+offset_right = 366.0
+offset_bottom = 183.0
+scale = Vector2(0.8, 0.8)
+theme_override_fonts/font = ExtResource("4_er0s7")
+theme_override_font_sizes/font_size = 64
+text = "Spawn Tree"
+
+[node name="Restart" type="Button" parent="GUI/Control"]
+layout_mode = 0
+offset_right = 299.0
+offset_bottom = 102.0
+scale = Vector2(0.8, 0.8)
+theme_override_fonts/font = ExtResource("4_er0s7")
+theme_override_font_sizes/font_size = 64
+text = "RESTART"
+
 [connection signal="timeout" from="Timers/AttackCooldown" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/HitstopTimer" to="." method="_on_hitstop_timer_timeout"]

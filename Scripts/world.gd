@@ -3,11 +3,16 @@ extends Node2D
 ## Variables
 @onready var y_sort := $YSort
 @onready var tree_counter := $YSort/Player/GUI/Control/TreeCounter
+@onready var reset_button := $YSort/Player/GUI/Control/Restart
+@onready var tree_spawner_button := $YSort/Player/GUI/Control/SpawnTree
+
 
 func _ready() -> void:
-	print(tree_counter)
-#region Ledges
+	
+	reset_button.pressed.connect(_on_player_died)
+	tree_spawner_button.pressed.connect(_on_spawn_tree)
 
+#region Ledges
 func _on_player_going_down() -> void:
 	
 	for border in $Ledges.get_children():

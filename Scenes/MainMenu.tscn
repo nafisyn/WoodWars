@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://ckxibyymfgmx"]
 
 [ext_resource type="Texture2D" uid="uid://dfof8wd38452h" path="res://External Assets/Sprout Lands - Sprites - Basic pack/Sprout Lands - Sprites - Basic pack/Tilesets/Hills.png" id="1_8saeu"]
-[ext_resource type="Script" uid="uid://iw3gnluhamju" path="res://Scenes/main_menu.gd" id="1_ghw46"]
+[ext_resource type="Script" uid="uid://iw3gnluhamju" path="res://Scripts/main_menu.gd" id="1_ghw46"]
 [ext_resource type="FontFile" uid="uid://bgocuvrfqxvbi" path="res://External Assets/CherryBombOne-Regular.ttf" id="2_ghw46"]
 [ext_resource type="PackedScene" uid="uid://0sm201jhb4ba" path="res://Scenes/Trees/AngryTreeEnemy.tscn" id="3_df05h"]
 
@@ -102,6 +102,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-88, 110, -88, -34, 200, -34, 201, 112)])
 
 [node name="MainMenu" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_ghw46")
 
 [node name="Background" type="TileMapLayer" parent="."]
