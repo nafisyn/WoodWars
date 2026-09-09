@@ -183,4 +183,16 @@ text = "Most current sprites made by Cup Nooble
 and color palette inspired/ taken from
 them too, link in description"
 
+[node name="VisualRangesCheck" type="CheckButton" parent="."]
+z_index = 2
+offset_left = -83.0
+offset_top = 30.000002
+offset_right = 71.0
+offset_bottom = 62.0
+scale = Vector2(0.6, 0.6)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_ghw46")
+text = "Visual Ranges"
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="toggled" from="VisualRangesCheck" to="." method="_on_visual_ranges_check_toggled"]

@@ -362,12 +362,11 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-205, -108, -64, -108, 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_5mil4")
 
-[node name="Hivemind" type="Node" parent="."]
-
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Decor" type="TileMapLayer" parent="YSort"]
+z_index = 1
 y_sort_enabled = true
 use_parent_material = true
 position = Vector2(0, 51)

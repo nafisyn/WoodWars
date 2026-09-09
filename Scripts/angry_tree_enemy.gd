@@ -44,6 +44,8 @@ var losing_health := false
 var dead := true
 var hitstopped := false
 var damage_number_scene := preload("res://Scenes/DamageNumber.tscn")
+
+signal died
 #endregion
 
 
@@ -332,6 +334,7 @@ func _on_hitstop_timer_timeout():
 func die():
 	
 	dead = true
+	died.emit()
 	
 	## Death particles
 	
