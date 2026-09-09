@@ -3,11 +3,14 @@ extends CharacterBody2D
 
 
 #region Variables, Constants, and Signals
+## @export variables
+@export var range_visible := true
+
 ## @onready variables
 @onready var sprite := $AnimatedSprite2D
 @onready var navigation_agent := $NavigationAgent2D
 @onready var attack_range := $AttackRange
-@onready var sight_range := $SightRange
+@onready var hive_range := $HiveRange
 @onready var wander_timer := $Timers/WanderTimer
 @onready var stop_timer = $Timers/StopTimer
 @onready var hive_alert_timer := $Timers/HiveAlertTimer
@@ -221,7 +224,7 @@ func send_hive_alert(player_position: Vector2):
 	var tween = create_tween()
 	tween.tween_property(sprite, "modulate", Color.WHITE, 0.3)
 	
-	for body in sight_range.get_overlapping_areas():
+	for body in hive_range.get_overlapping_areas():
 		
 		if body.get_parent().is_in_group("tree") and body != attack_range:
 			

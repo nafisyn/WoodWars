@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 
 #region Variables, Constants, and Signals
+## @export variables
+@export var range_visible := true
 
 ## @onreadys
 @onready var sprite = $AnimatedSprite2D

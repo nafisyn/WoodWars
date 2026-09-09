@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://dwt40r68itugw"]
+[gd_scene load_steps=30 format=3 uid="uid://dwt40r68itugw"]
 
 [ext_resource type="Script" uid="uid://b8g31f4hiu7pp" path="res://Scripts/animal_player.gd" id="1_305qx"]
 [ext_resource type="Texture2D" uid="uid://bdv3u8fbcw5sj" path="res://External Assets/Sprout Lands - Sprites - Basic pack/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="2_lt0il"]
+[ext_resource type="Script" uid="uid://d3ucq5m4vyrk3" path="res://Scripts/visible_range.gd" id="3_pwitc"]
 [ext_resource type="Texture2D" uid="uid://51w3aasci63y" path="res://External Assets/Spritesheets/GUISprites.png" id="3_sb8ud"]
 [ext_resource type="FontFile" uid="uid://bgocuvrfqxvbi" path="res://External Assets/CherryBombOne-Regular.ttf" id="4_er0s7"]
 
@@ -197,11 +198,13 @@ position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_71vdf")
 
 [node name="AttackRange" type="Area2D" parent="."]
-visible = false
 collision_mask = 8
+script = ExtResource("3_pwitc")
+ring_color = Color(1, 0, 0, 0.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_305qx")
+debug_color = Color(1, 0, 0, 0.3)
 
 [node name="Timers" type="Node2D" parent="."]
 

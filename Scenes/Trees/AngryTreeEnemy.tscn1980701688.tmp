@@ -486,32 +486,30 @@ autoplay = "spawn_animation"
 position = Vector2(0, 1)
 collision_layer = 2
 script = ExtResource("3_0mtmp")
-ring_color = Color(0.101960786, 0.5019608, 1, 0.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SightRange"]
 position = Vector2(1, 4)
 shape = SubResource("CircleShape2D_6k5ny")
-debug_color = Color(0.102, 0.502, 1, 0.42)
+
+[node name="Polygon2D" type="Polygon2D" parent="SightRange"]
 
 [node name="HiveRange" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("3_0mtmp")
-ring_color = Color(1, 0.6509804, 0, 0.078431375)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HiveRange"]
 position = Vector2(1, 5)
 shape = SubResource("CircleShape2D_ly8tm")
-debug_color = Color(1, 0.651, 0, 0.42)
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 position = Vector2(0, 1)
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 position = Vector2(1, 3)
 shape = SubResource("CircleShape2D_kccub")
-debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="Timers" type="Node2D" parent="."]
 
