@@ -361,5 +361,4 @@ func _on_death_animation_timer_timeout() -> void:
 func _on_spawn_animation_timer_timeout() -> void:
 	
 	dead = false
-
 #endregion

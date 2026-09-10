@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 ## @onreadys
 @onready var sprite = $AnimatedSprite2D
+@onready var camera := $Camera
 @onready var last_direction: String = "down"
 @onready var attack_timer = $Timers/AttackCooldown
 @onready var hitstop_timer = $Timers/HitstopTimer
@@ -76,6 +77,7 @@ func _physics_process(delta):
 		last_direction = "left"
 	
 	update_animation(direction)
+	update_camera_position(direction)
 	
 	## Ledges
 	if last_direction == "down":
@@ -106,7 +108,7 @@ func _physics_process(delta):
 			attack_cooldown_bar.value = 1
 
 
-## Animation
+#region Animation
 func update_animation(direction: Vector2):
 	
 	if direction != Vector2.ZERO:
@@ -115,6 +117,22 @@ func update_animation(direction: Vector2):
 	else:
 		
 		sprite.play("%s_idle_animation" % last_direction)
+
+
+func update_camera_position(direction: Vector2):
+	
+	var target_position := direction * 12
+	var tween := create_tween()
+	
+	tween.tween_property(
+		camera,
+		"position",
+		target_position,
+		0.2
+	)
+	
+	
+#endregion
 
 
 #region Fighting
