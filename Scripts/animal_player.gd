@@ -48,7 +48,7 @@ func _physics_process(delta):
 	fps_label.text = "FPS: %d" % Engine.get_frames_per_second()
 	
 	## Movement
-	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var direction = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 	
 	velocity = velocity.move_toward(direction * SPEED, ACCELERATION * delta)
 	move_and_slide()

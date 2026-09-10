@@ -500,7 +500,6 @@ autoplay = "spawn_animation"
 position = Vector2(0, 1)
 collision_layer = 2
 script = ExtResource("3_0mtmp")
-ring_color = Color(0.101960786, 0.5019608, 1, 0.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SightRange"]
 position = Vector2(1, 4)
@@ -517,7 +516,7 @@ internal_vertex_count = 1
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("3_0mtmp")
-ring_color = Color(1, 0.6509804, 0, 0.078431375)
+ring_color = Color(0.8276081, 0.555158, 0.23392066, 0.078431375)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HiveRange"]
 position = Vector2(1, 5)

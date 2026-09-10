@@ -171,6 +171,8 @@ radius = 20.024984
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y0x6t"]
 shader = ExtResource("4_gy40q")
 shader_parameter/radius = 100.0
+shader_parameter/ring_color = Color(0, 0, 0, 1)
+shader_parameter/fade_alpha = 1.0
 
 [sub_resource type="Theme" id="Theme_253md"]
 
@@ -206,7 +208,7 @@ shape = SubResource("CircleShape2D_71vdf")
 [node name="AttackRange" type="Area2D" parent="."]
 collision_mask = 8
 script = ExtResource("3_pwitc")
-ring_color = Color(1, 0, 0, 0.2)
+ring_color = Color(0.9034469, 0.30032346, 0.22090375, 0.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_305qx")
@@ -299,6 +301,7 @@ texture_progress = SubResource("AtlasTexture_gy40q")
 metadata/_edit_use_anchors_ = true
 
 [node name="FPSLabel" type="Label" parent="GUI/Control"]
+texture_filter = 2
 layout_mode = 0
 offset_left = 1023.0
 offset_top = 592.0
@@ -312,6 +315,7 @@ theme_override_font_sizes/font_size = 32
 text = "FPS: 60"
 
 [node name="TreeCounter" type="Label" parent="GUI/Control"]
+texture_filter = 2
 layout_mode = 0
 offset_left = 1002.0
 offset_top = 548.0
@@ -325,6 +329,7 @@ theme_override_font_sizes/font_size = 32
 text = "Trees: 2"
 
 [node name="SpawnTree" type="Button" parent="GUI/Control"]
+texture_filter = 2
 layout_mode = 0
 offset_left = -1.0
 offset_top = 81.0
@@ -336,6 +341,7 @@ theme_override_font_sizes/font_size = 64
 text = "Spawn Tree"
 
 [node name="Restart" type="Button" parent="GUI/Control"]
+texture_filter = 2
 layout_mode = 0
 offset_right = 299.0
 offset_bottom = 102.0

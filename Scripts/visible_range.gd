@@ -1,7 +1,7 @@
 extends Area2D
 
 
-@export var ring_color := Color(0.1, 0.5, 1.0, 0.2)
+@export var ring_color := Color(0.2, 0.5, 0.9, 0.2)
 
 @onready var collision = $CollisionShape2D
 @onready var polygon = $VisibleRange
