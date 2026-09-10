@@ -413,7 +413,7 @@ tile_set = SubResource("TileSet_q73pa")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_5r7g7")
-volume_db = -22.16
+volume_db = -18.0
 autoplay = true
 
 [node name="Ledges" type="Node2D" parent="."]
@@ -444,10 +444,10 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_q73pa")
 
 [node name="Panel" parent="." instance=ExtResource("13_ccaoo")]
-offset_left = -65.000046
-offset_top = -214.00003
-offset_right = 610.99994
-offset_bottom = -2.0000305
+offset_left = -64.0
+offset_top = -187.0
+offset_right = 612.0
+offset_bottom = 25.0
 scale = Vector2(0.30754542, 0.29659837)
 
 [node name="GUI" type="CanvasLayer" parent="."]
