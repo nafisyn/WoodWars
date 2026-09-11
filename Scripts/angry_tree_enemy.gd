@@ -212,6 +212,7 @@ func _on_wander_timer_timeout():
 
 ## Stop wandering timer
 func _on_stop_timer_timeout() -> void:
+	
 	wandering = false
 	direction = Vector2.ZERO
 #endregion
@@ -271,7 +272,7 @@ func attack():
 
 func _on_attack_timer_timeout():
 	
-	if animal != null and attacking:
+	if animal != null and attacking and animal.health != 0:
 		
 		## Damage
 		animal.take_damage(ATTACK_DAMAGE, direction, KNOCKBACK_POWER, HITSTOP)
@@ -339,12 +340,12 @@ func die():
 	## Death particles
 	
 	## Leaves
-	leaf_particles.amount = 500
+	leaf_particles.amount = 75
 	leaf_particles.speed_scale = 0.3
 	leaf_particles.emitting = true
 	
 	## Wood
-	wood_particles.amount = 500
+	wood_particles.amount = 75
 	wood_particles.speed_scale = 0.3
 	wood_particles.emitting = true
 	
