@@ -20,10 +20,10 @@ extends CharacterBody2D
 @onready var fps_label := $GUI/Control/FPSLabel
 
 ## Constants
-const SPEED := 65.0
 const ACCELERATION := 400.0
 
 ## Variables
+var speed := 65.0
 var max_health := 100
 var health := max_health
 var attack_damage := 10
@@ -39,9 +39,22 @@ signal died()
 
 func _ready() -> void:
 	
+	## God mode
+	if GameData.god_mode:
+		
+		speed = 200
+		max_health = 1000
+	
+	## Sets Health
+	health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = health
 	health_label.text = str(health)
+	
+	
+	
+	## Sets Color
+	sprite.modulate = GameData.player_modulate
 
 
 func _physics_process(delta):
@@ -51,7 +64,7 @@ func _physics_process(delta):
 	## Movement
 	var direction = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 	
-	velocity = velocity.move_toward(direction * SPEED, ACCELERATION * delta)
+	velocity = velocity.move_toward(direction * speed, ACCELERATION * delta)
 	move_and_slide()
 	
 	## Other Inputs

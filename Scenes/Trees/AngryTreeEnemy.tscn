@@ -497,6 +497,7 @@ autoplay = "spawn_animation"
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="SightRange" type="Area2D" parent="."]
+visible = false
 position = Vector2(0, 1)
 collision_layer = 2
 script = ExtResource("3_0mtmp")
@@ -513,6 +514,7 @@ position = Vector2(1, 4)
 internal_vertex_count = 1
 
 [node name="HiveRange" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("3_0mtmp")
@@ -529,6 +531,7 @@ material = SubResource("ShaderMaterial_p4v4t")
 position = Vector2(1, 5)
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 position = Vector2(0, 1)
 collision_layer = 8
 
@@ -628,6 +631,9 @@ theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("4_ygxvm")
 theme_override_font_sizes/font_size = 32
 text = "30"
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-80, -80, 160, 160)
 
 [connection signal="died" from="." to="SightRange" method="_on_died"]
 [connection signal="died" from="." to="HiveRange" method="_on_died"]

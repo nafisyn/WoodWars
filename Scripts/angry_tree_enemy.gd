@@ -63,6 +63,12 @@ func _ready() -> void:
 		$SightRange.visible = false
 		$HiveRange.visible = false
 		$AttackRange.visible = false
+	
+	else:
+		
+		$SightRange.visible = true
+		$HiveRange.visible = true
+		$AttackRange.visible = true
 
 
 func _physics_process(_delta):
