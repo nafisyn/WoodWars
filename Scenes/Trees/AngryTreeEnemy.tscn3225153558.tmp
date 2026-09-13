@@ -467,7 +467,7 @@ shader_parameter/ring_color = Color(0, 0, 0, 1)
 shader_parameter/fade_alpha = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ly8tm"]
-radius = 81.1
+radius = 81.09871
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p4v4t"]
 shader = ExtResource("4_p4v4t")
@@ -516,7 +516,7 @@ internal_vertex_count = 1
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("3_0mtmp")
-ring_color = Color(0.8276081, 0.555158, 0.23392066, 0.078431375)
+ring_color = Color(0.8, 0.65, 0.3, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HiveRange"]
 position = Vector2(1, 5)
@@ -527,6 +527,8 @@ debug_color = Color(1, 0.6509804, 0, 0.41960785)
 z_as_relative = false
 material = SubResource("ShaderMaterial_p4v4t")
 position = Vector2(1, 5)
+polygon = PackedVector2Array(-144, 35)
+uv = PackedVector2Array(-144, 35)
 
 [node name="AttackRange" type="Area2D" parent="."]
 position = Vector2(0, 1)
@@ -599,8 +601,6 @@ emission_sphere_radius = 1.0
 color = Color(0.6666667, 0.4745098, 0.34901962, 1)
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
-z_index = 1
-y_sort_enabled = true
 offset_left = -9.0
 offset_top = -38.0
 offset_right = 119.0

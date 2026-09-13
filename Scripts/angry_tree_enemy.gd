@@ -56,6 +56,13 @@ func _ready() -> void:
 	wander_timer.wait_time += randf_range(-1, 1)
 	wander_timer.start()
 	wander_timer.wait_time = 4.0
+	
+	# Turns Visible Ranges off
+	if GameData.visible_ranges == false:
+		
+		$SightRange.visible = false
+		$HiveRange.visible = false
+		$AttackRange.visible = false
 
 
 func _physics_process(_delta):

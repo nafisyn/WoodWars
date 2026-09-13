@@ -23,6 +23,7 @@ func _ready():
 	var points = PackedVector2Array()
 	
 	for i in 64:
+		
 		var angle = TAU * i / 64.0
 		points.append(Vector2(cos(angle), sin(angle)) * radius)
 	
@@ -40,6 +41,7 @@ func _ready():
 func set_dead(dead: bool):
 	
 	if GameData.visible_ranges:
+		
 		if fade_tween:
 			
 			fade_tween.kill()

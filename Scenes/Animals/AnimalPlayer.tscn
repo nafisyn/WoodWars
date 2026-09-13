@@ -208,7 +208,7 @@ shape = SubResource("CircleShape2D_71vdf")
 [node name="AttackRange" type="Area2D" parent="."]
 collision_mask = 8
 script = ExtResource("3_pwitc")
-ring_color = Color(0.9034469, 0.30032346, 0.22090375, 0.2)
+ring_color = Color(1, 0.29000002, 0.29000002, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_305qx")
@@ -240,10 +240,10 @@ emission_sphere_radius = 6.1
 color = Color(0.9529412, 0.9490196, 0.7529412, 1)
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
-offset_left = 104.0
-offset_top = -71.0
-offset_right = 232.0
-offset_bottom = 57.0
+offset_left = 80.0
+offset_top = -63.0
+offset_right = 208.0
+offset_bottom = 65.0
 theme = SubResource("Theme_253md")
 value = 100.0
 fill_mode = 5
@@ -269,7 +269,7 @@ text = "100"
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(0, 1)
-zoom = Vector2(4, 4)
+zoom = Vector2(4.5, 4.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
@@ -285,10 +285,10 @@ metadata/_edit_use_anchors_ = true
 [node name="AttackBar" type="TextureProgressBar" parent="GUI/Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.45
-anchor_top = 12.625
-anchor_right = 0.45
-anchor_bottom = 12.625
+anchor_left = 0.35
+anchor_top = 14.45
+anchor_right = 0.35
+anchor_bottom = 14.45
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(4, 4)
@@ -303,10 +303,10 @@ metadata/_edit_use_anchors_ = true
 [node name="FPSLabel" type="Label" parent="GUI/Control"]
 texture_filter = 2
 layout_mode = 0
-offset_left = 1023.0
-offset_top = 592.0
-offset_right = 1143.0
-offset_bottom = 642.0
+offset_left = 1153.0
+offset_top = 674.0
+offset_right = 1273.0
+offset_bottom = 724.0
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 10
 theme_override_constants/shadow_outline_size = 2
@@ -317,10 +317,10 @@ text = "FPS: 60"
 [node name="TreeCounter" type="Label" parent="GUI/Control"]
 texture_filter = 2
 layout_mode = 0
-offset_left = 1002.0
-offset_top = 548.0
-offset_right = 1122.0
-offset_bottom = 598.0
+offset_left = 1132.0
+offset_top = 630.0
+offset_right = 1256.0
+offset_bottom = 680.0
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 10
 theme_override_constants/shadow_outline_size = 2
