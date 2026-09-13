@@ -350,5 +350,7 @@ theme_override_fonts/font = ExtResource("4_er0s7")
 theme_override_font_sizes/font_size = 64
 text = "RESTART"
 
+[node name="MobileControls" type="Node2D" parent="GUI/Control"]
+
 [connection signal="timeout" from="Timers/AttackCooldown" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/HitstopTimer" to="." method="_on_hitstop_timer_timeout"]

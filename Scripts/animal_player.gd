@@ -68,7 +68,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	## Other Inputs
-	if Input.is_action_pressed("left_click"):
+	if Input.is_action_pressed("basic_attack"):
 		
 		attack()
 	
