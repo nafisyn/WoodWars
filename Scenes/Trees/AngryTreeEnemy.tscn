@@ -531,9 +531,9 @@ material = SubResource("ShaderMaterial_p4v4t")
 position = Vector2(1, 5)
 
 [node name="AttackRange" type="Area2D" parent="."]
-visible = false
 position = Vector2(0, 1)
 collision_layer = 8
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 position = Vector2(1, 3)
