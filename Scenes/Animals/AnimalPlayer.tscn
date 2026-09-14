@@ -170,9 +170,10 @@ radius = 20.024984
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y0x6t"]
 shader = ExtResource("4_gy40q")
-shader_parameter/radius = 100.0
-shader_parameter/ring_color = Color(0, 0, 0, 1)
-shader_parameter/fade_alpha = 1.0
+shader_parameter/speed = 0.3
+shader_parameter/glow_strength = 0.8
+shader_parameter/edge_softness = 0.15
+shader_parameter/color = Color(0.98, 0.92, 0.79, 1)
 
 [sub_resource type="Theme" id="Theme_253md"]
 
