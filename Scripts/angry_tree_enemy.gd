@@ -79,22 +79,17 @@ func _physics_process(_delta):
 	if not dead:
 		
 		## Chase
-		if chasing:
-			
-			velocity = direction * CHASE_SPEED
-		
-		else:
-			
-			velocity = direction * NORMAL_SPEED
 		
 		if chasing or wandering:
 			
 			var next_position = navigation_agent.get_next_path_position()
 			direction = global_position.direction_to(next_position)
 		
-		move_and_slide()
+		var current_speed = CHASE_SPEED if chasing else NORMAL_SPEED
+		navigation_agent.set_velocity(direction * current_speed)
 		
 		if chasing and animal == null and navigation_agent.is_navigation_finished():
+			
 			chasing = false
 			wandering = true
 			direction = Vector2.ZERO
@@ -175,6 +170,13 @@ func _on_chase_timer_timeout():
 	
 	## Sets direction to found position
 	direction = global_position.direction_to(next_position)
+
+
+## Spread
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	
+	velocity = safe_velocity
+	move_and_slide()
 
 
 ## Animal enters sight range

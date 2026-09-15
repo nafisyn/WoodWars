@@ -495,6 +495,8 @@ animation = &"idle_animation"
 autoplay = "spawn_animation"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+neighbor_distance = 10.0
 
 [node name="SightRange" type="Area2D" parent="."]
 visible = false
@@ -531,9 +533,9 @@ material = SubResource("ShaderMaterial_p4v4t")
 position = Vector2(1, 5)
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 position = Vector2(0, 1)
 collision_layer = 8
-monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 position = Vector2(1, 3)
@@ -637,6 +639,7 @@ rect = Rect2(-80, -80, 160, 160)
 
 [connection signal="died" from="." to="SightRange" method="_on_died"]
 [connection signal="died" from="." to="HiveRange" method="_on_died"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="body_entered" from="SightRange" to="." method="_on_sight_range_body_entered"]
 [connection signal="body_exited" from="SightRange" to="." method="_on_sight_range_body_exited"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]

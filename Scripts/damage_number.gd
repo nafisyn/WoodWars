@@ -1,8 +1,8 @@
 extends Label
 
 
-var distance := 50.0
-var duration := 2.0
+var distance := 25.0
+var duration := 1.0
 var end_scale = Vector2(0.3, 0.3)
 var pop_duration = 0.25
 

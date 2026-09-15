@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+# Player
 
 #region Variables, Constants, and Signals
 ## @export variables
@@ -176,7 +176,7 @@ func _on_attack_timer_timeout():
 
 
 ## Taking damage
-func take_damage(damage: int, knockback_direction: Vector2, knockback_power: int, hitstop: float, hitstop_power: float = 0.0):
+func take_damage(damage: int, knockback_direction: Vector2, knockback_power: int, hitstop: float):
 	
 	## Damage
 	health = clamp(health - damage, 0, max_health)
@@ -192,10 +192,11 @@ func take_damage(damage: int, knockback_direction: Vector2, knockback_power: int
 	elif len(str(health)) == 1:
 		health_label.position.x = 12
 	
+	
 	## Hitstop
 	if hitstop > 0.0:
 		
-		Engine.time_scale = hitstop_power
+		Engine.time_scale = 0
 		hitstop_timer.wait_time = hitstop
 		sprite.modulate = Color(1.0, 0.631, 0.608)
 		hitstop_timer.start()
