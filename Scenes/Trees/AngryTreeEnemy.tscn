@@ -458,7 +458,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6k5ny"]
-radius = 59.0
+radius = 76.00658
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tja26"]
 shader = ExtResource("4_p4v4t")
@@ -467,7 +467,7 @@ shader_parameter/ring_color = Color(0, 0, 0, 1)
 shader_parameter/fade_alpha = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ly8tm"]
-radius = 81.1
+radius = 99.0202
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p4v4t"]
 shader = ExtResource("4_p4v4t")
@@ -496,7 +496,9 @@ autoplay = "spawn_animation"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-neighbor_distance = 20.0
+radius = 15.0
+neighbor_distance = 10.0
+time_horizon_agents = 0.5
 max_speed = 60.0
 
 [node name="SightRange" type="Area2D" parent="."]
