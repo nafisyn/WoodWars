@@ -92,7 +92,12 @@ func _physics_process(_delta):
 			var next_position = navigation_agent.get_next_path_position()
 			direction = global_position.direction_to(next_position)
 			
-			move_and_slide()
+			navigation_agent.set_velocity(velocity)
+		
+		else:
+			
+			navigation_agent.set_velocity(Vector2.ZERO)
+			direction = Vector2.ZERO
 		
 		if chasing and animal == null and navigation_agent.is_navigation_finished():
 			
@@ -185,6 +190,11 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 		return
 	
 	velocity = safe_velocity
+	
+	if velocity != Vector2.ZERO:
+		
+		direction = velocity.normalized()
+	
 	move_and_slide()
 
 
