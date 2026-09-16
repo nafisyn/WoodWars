@@ -1,20 +1,19 @@
-[gd_scene load_steps=33 format=3 uid="uid://dwt40r68itugw"]
+[gd_scene load_steps=32 format=3 uid="uid://dwt40r68itugw"]
 
 [ext_resource type="Script" uid="uid://b8g31f4hiu7pp" path="res://Scripts/animal_player.gd" id="1_305qx"]
 [ext_resource type="Texture2D" uid="uid://bdv3u8fbcw5sj" path="res://External Assets/Sprout Lands - Sprites - Basic pack/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="2_lt0il"]
-[ext_resource type="Texture2D" uid="uid://md3d4v7sn251" path="res://External Assets/PlayerSpriteSheet.png" id="2_y0x6t"]
 [ext_resource type="Script" uid="uid://d3ucq5m4vyrk3" path="res://Scripts/visible_range.gd" id="3_pwitc"]
 [ext_resource type="Texture2D" uid="uid://51w3aasci63y" path="res://External Assets/Spritesheets/GUISprites.png" id="3_sb8ud"]
 [ext_resource type="FontFile" uid="uid://bgocuvrfqxvbi" path="res://External Assets/CherryBombOne-Regular.ttf" id="4_er0s7"]
 [ext_resource type="Shader" uid="uid://bmyjhejas0fuo" path="res://Shaders/visible_range.gdshader" id="4_gy40q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6i7dm"]
-atlas = ExtResource("2_y0x6t")
-region = Rect2(0, 0, 32, 32)
+atlas = ExtResource("2_lt0il")
+region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hjjwn"]
-atlas = ExtResource("2_y0x6t")
-region = Rect2(32, 0, 32, 32)
+atlas = ExtResource("2_lt0il")
+region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ignpg"]
 atlas = ExtResource("2_lt0il")
@@ -75,10 +74,10 @@ region = Rect2(144, 48, 48, 48)
 [sub_resource type="SpriteFrames" id="SpriteFrames_w7xf2"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_6i7dm")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_hjjwn")
 }],
 "loop": true,
@@ -229,6 +228,14 @@ wait_time = 0.12
 one_shot = true
 ignore_time_scale = true
 
+[node name="PassiveHealTimer" type="Timer" parent="Timers"]
+wait_time = 6.0
+one_shot = true
+
+[node name="HealIntervalTimer" type="Timer" parent="Timers/PassiveHealTimer"]
+wait_time = 3.0
+one_shot = true
+
 [node name="DamageParticles" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 10
@@ -241,6 +248,8 @@ emission_sphere_radius = 6.1
 color = Color(0.9529412, 0.9490196, 0.7529412, 1)
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
+z_index = 100
+z_as_relative = false
 offset_left = 80.0
 offset_top = -63.0
 offset_right = 208.0
@@ -355,3 +364,5 @@ text = "RESTART"
 
 [connection signal="timeout" from="Timers/AttackCooldown" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/HitstopTimer" to="." method="_on_hitstop_timer_timeout"]
+[connection signal="timeout" from="Timers/PassiveHealTimer" to="." method="_on_passive_heal_timer_timeout"]
+[connection signal="timeout" from="Timers/PassiveHealTimer/HealIntervalTimer" to="." method="_on_heal_interval_timer_timeout"]

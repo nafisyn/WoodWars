@@ -11,6 +11,8 @@ extends CharacterBody2D
 @onready var last_direction: String = "down"
 @onready var attack_timer = $Timers/AttackCooldown
 @onready var hitstop_timer = $Timers/HitstopTimer
+@onready var passive_heal_timer := $Timers/PassiveHealTimer
+@onready var heal_interval_timer := $Timers/PassiveHealTimer/HealIntervalTimer
 @onready var attack_range = $AttackRange
 @onready var damage_particles = $DamageParticles
 @onready var health_bar = $HealthBar
@@ -28,7 +30,6 @@ var max_health := 100
 var health := max_health
 var attack_damage := 10
 var attacking := true
-var losing_health := false
 var damage_number_scene := preload("res://Scenes/DamageNumber.tscn")
 
 signal going_down()
@@ -104,13 +105,26 @@ func _physics_process(delta):
 	## Bars
 	
 	## Health bar animation
-	if losing_health:
+	if health_bar.value > health:
 		
 		health_bar.value -= 2.5
+	
+	if health_bar.value != health or health_label.text != str(health):
 		
-		if health_bar.value <= health:
+		health_bar.value = health if health_bar.value < health else health_bar.value
+		health_label.text = str(health)
+		
+		if len(str(health)) == 2:
 			
-			losing_health = false
+			health_label.position.x = 6
+		
+		elif len(str(health)) == 1:
+			
+			health_label.position.x = 12
+		
+		else:
+			
+			health_label.position.x = 1.33
 	
 	if not attack_timer.is_stopped():
 		
@@ -148,6 +162,25 @@ func update_camera_position(direction: Vector2):
 #endregion
 
 
+#region Healing
+func _on_passive_heal_timer_timeout():
+	
+	heal_interval_timer.start()
+
+
+func _on_heal_interval_timer_timeout():
+	
+	if health != max_health:
+		
+		health = clamp(health + 10, 0 ,max_health)
+		
+		heal_interval_timer.start()
+	
+	else:
+		pass
+#endregion
+
+
 #region Fighting
 
 ## Attack
@@ -181,7 +214,6 @@ func take_damage(damage: int, knockback_direction: Vector2, knockback_power: int
 	## Damage
 	health = clamp(health - damage, 0, max_health)
 	
-	losing_health = true
 	
 	health_label.text = str(health)
 	
@@ -190,6 +222,7 @@ func take_damage(damage: int, knockback_direction: Vector2, knockback_power: int
 		health_label.position.x = 6
 	
 	elif len(str(health)) == 1:
+		
 		health_label.position.x = 12
 	
 	
@@ -211,6 +244,10 @@ func take_damage(damage: int, knockback_direction: Vector2, knockback_power: int
 	## Knockback
 	velocity = velocity.move_toward(knockback_direction * knockback_power, ACCELERATION)
 	move_and_slide()
+	
+	## Passive heal
+	heal_interval_timer.stop()
+	passive_heal_timer.start()
 	
 	if health <= 0:
 		
