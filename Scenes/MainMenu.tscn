@@ -132,17 +132,17 @@ zoom = Vector2(4, 4)
 [node name="Title" type="Label" parent="."]
 z_index = 3
 texture_filter = 2
-offset_left = -43.0
-offset_top = -20.0
-offset_right = 663.0
-offset_bottom = 74.0
+offset_left = -35.0
+offset_top = -21.0
+offset_right = 671.0
+offset_bottom = 73.0
 scale = Vector2(1.2, 1.2)
 theme_override_colors/font_color = Color(0.5921569, 0.73333335, 0.5568628, 1)
 theme_override_constants/shadow_offset_y = 22
 theme_override_constants/outline_size = 10
 theme_override_constants/shadow_outline_size = 11
 theme_override_fonts/font = ExtResource("2_ghw46")
-text = "WoodWars (Prototype)"
+text = "WoodWars (Alpha)"
 
 [node name="PlayButton" type="Button" parent="."]
 z_index = 3
