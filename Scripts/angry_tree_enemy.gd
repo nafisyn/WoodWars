@@ -345,6 +345,7 @@ func take_damage(damage, hitstop):
 	world.add_child(damage_number)
 	damage_number.setup(damage)
 	damage_number.position = global_position + Vector2(randf_range(-10, 10), randf_range(-10, 10))
+	damage_number.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
 	
 	## Hitstop
 	hitstopped = true
